@@ -47,6 +47,19 @@ public class SzukajActivity extends CustomAppCompatActivity {
     private CheckBox cbPrimal;
     private CheckBox cbLowfodmap;
 
+    private CheckBox cbDairy;
+    private CheckBox cbEgg;
+    private CheckBox cbGluten;
+    private CheckBox cbGrain;
+    private CheckBox cbPeanut;
+    private CheckBox cbSeafood;
+    private CheckBox cbSesame;
+    private CheckBox cbShellfish;
+    private CheckBox cbSoy;
+    private CheckBox cbSulfite;
+    private CheckBox cbTreenut;
+    private CheckBox cbWheat;
+
     private Button bSzukaj;
     PrzepisApi przepisApi;
 
@@ -92,6 +105,19 @@ public class SzukajActivity extends CustomAppCompatActivity {
         cbPrimal = findViewById(R.id.cbPrimal);
         cbLowfodmap = findViewById(R.id.cbLowfodmap);
         cbWhole30 = findViewById(R.id.cbWhole30);
+
+        cbDairy = findViewById(R.id.cbDairy);
+        cbEgg = findViewById(R.id.cbEgg);
+        cbGluten = findViewById(R.id.cbGluten);
+        cbGrain = findViewById(R.id.cbGrain);
+        cbPeanut = findViewById(R.id.cbPeanut);
+        cbSeafood = findViewById(R.id.cbSeafood);
+        cbSesame = findViewById(R.id.cbSesame);
+        cbShellfish = findViewById(R.id.cbShellfish);
+        cbSoy = findViewById(R.id.cbSoy);
+        cbSulfite = findViewById(R.id.cbSulfite);
+        cbTreenut = findViewById(R.id.cbTreenut);
+        cbWheat = findViewById(R.id.cbWheat);
 
         RetrofitService retrofitService = RetrofitService.getInstancja(this);
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
@@ -139,11 +165,25 @@ public class SzukajActivity extends CustomAppCompatActivity {
         return String.join(",", list);
     }
 
-    private String getKuchnie() {
-        return "";
+    private String getNietolerancje() {
+        List<String> list = new ArrayList<>();
+        if (cbDairy.isChecked()) list.add("dairy");
+        if (cbEgg.isChecked()) list.add("egg");
+        if (cbGluten.isChecked()) list.add("gluten");
+        if (cbGrain.isChecked()) list.add("grain");
+        if (cbPeanut.isChecked()) list.add("peanut");
+        if (cbSeafood.isChecked()) list.add("seafood");
+        if (cbSesame.isChecked()) list.add("sesame");
+        if (cbShellfish.isChecked()) list.add("shellfish");
+        if (cbSoy.isChecked()) list.add("soy");
+        if (cbSulfite.isChecked()) list.add("sulfite");
+        if (cbTreenut.isChecked()) list.add("tree+nut");
+        if (cbWheat.isChecked()) list.add("wheat");
+
+        return String.join(",", list);
     }
 
-    private String getNietolerancje() {
+    private String getKuchnie() {
         return "";
     }
 
@@ -167,8 +207,20 @@ public class SzukajActivity extends CustomAppCompatActivity {
         cbLowfodmap.setText(R.string.lowfodmap);
         cbWhole30.setText(R.string.whole30);
 
-        bSzukaj.setText(R.string.szukaj);
+        cbDairy.setText(R.string.dairy);
+        cbEgg.setText(R.string.egg);
+        cbGluten.setText(R.string.gluten);
+        cbGrain.setText(R.string.grain);
+        cbPeanut.setText(R.string.peanut);
+        cbSeafood.setText(R.string.seafood);
+        cbSesame.setText(R.string.sesame);
+        cbShellfish.setText(R.string.shellfish);
+        cbSoy.setText(R.string.soy);
+        cbSulfite.setText(R.string.sulfite);
+        cbTreenut.setText(R.string.treenut);
+        cbWheat.setText(R.string.wheat);
 
+        bSzukaj.setText(R.string.szukaj);
 
 
         super.updateJezyka();

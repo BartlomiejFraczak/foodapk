@@ -54,4 +54,18 @@
     <string name="primal">Primal</string>
     <string name="lowfodmap">Low FODMAP</string>
     <string name="whole30">Whole30</string>
+
+    <string name="dairy">Nabiał</string>
+    <string name="egg">Jajka</string>
+    <string name="gluten">Gluten</string>
+    <string name="grain">Zboże</string>
+    <string name="peanut">Orzechy ziemne</string>
+    <string name="seafood">Owoce morza</string>
+    <string name="sesame">Sezam</string>
+    <string name="shellfish">Skorupiaki</string>
+    <string name="soy">Soja</string>
+    <string name="sulfite">Siarczyny</string>
+    <string name="treenut">Orzechy drzewne</string>
+    <string name="wheat">Pszenica</string>
+
 </resources>

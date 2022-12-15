@@ -98,10 +98,10 @@
                     android:id="@+id/cbGlutenfree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/glutenfree"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/glutenfree" />
             </TableRow>
 
             <TableRow
@@ -112,10 +112,10 @@
                     android:id="@+id/cbKetogenic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ketogenic"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/ketogenic" />
             </TableRow>
 
             <TableRow
@@ -126,10 +126,10 @@
                     android:id="@+id/cbVegetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/vegetarian"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/vegetarian" />
             </TableRow>
 
             <TableRow
@@ -140,10 +140,10 @@
                     android:id="@+id/cbLactovegetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lactovegetarian"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/lactovegetarian" />
             </TableRow>
 
             <TableRow
@@ -154,10 +154,10 @@
                     android:id="@+id/cbOvovegetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ovovegetarian"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/ovovegetarian" />
             </TableRow>
 
             <TableRow
@@ -168,10 +168,10 @@
                     android:id="@+id/cbVegan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/vegan"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/vegan" />
             </TableRow>
 
             <TableRow
@@ -182,10 +182,10 @@
                     android:id="@+id/cbPescetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pescetarian"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/pescetarian" />
             </TableRow>
 
             <TableRow
@@ -196,10 +196,10 @@
                     android:id="@+id/cbPaleo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/paleo"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/paleo" />
             </TableRow>
 
             <TableRow
@@ -210,10 +210,10 @@
                     android:id="@+id/cbPrimal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/primal"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/primal" />
             </TableRow>
 
             <TableRow
@@ -224,10 +224,10 @@
                     android:id="@+id/cbLowfodmap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lowfodmap"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/lowfodmap" />
             </TableRow>
 
             <TableRow
@@ -238,10 +238,10 @@
                     android:id="@+id/cbWhole30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/whole30"
                     android:layout_marginHorizontal="16dp"
                     android:layout_span="2"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:text="@string/whole30" />
             </TableRow>
 
             <View
@@ -277,6 +277,173 @@
 
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbDairy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/dairy" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbEgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/egg" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbGluten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/gluten" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbGrain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/grain" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbPeanut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/peanut" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbSeafood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/seafood" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbSesame"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/sesame" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbShellfish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/shellfish" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbSoy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/soy" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbSulfite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/sulfite" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbTreenut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/treenut" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:id="@+id/cbWheat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_span="2"
+                    android:layout_weight="1"
+                    android:text="@string/wheat" />
+            </TableRow>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
