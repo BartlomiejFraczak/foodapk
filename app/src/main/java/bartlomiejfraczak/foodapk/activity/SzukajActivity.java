@@ -124,7 +124,7 @@ public class SzukajActivity extends CustomAppCompatActivity {
 
     private String getDiety() {
         List<String> list = new ArrayList<>();
-        if (cbGlutenfree.isChecked()) list.add("gluten+free");
+        if (cbGlutenfree.isChecked()) list.add("gluten+free"); // todo zmienic na statici
         if (cbKetogenic.isChecked()) list.add("ketogenic");
         if (cbVegetarian.isChecked()) list.add("vegetarian");
         if (cbLactovegetarian.isChecked()) list.add("lacto-vegetarian");
