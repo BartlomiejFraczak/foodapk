@@ -100,6 +100,7 @@ public class LogowanieActivity extends CustomAppCompatActivity {
     }
 
     public void updateJezyka() {
+        this.setTitle(R.string.title_activity_logowanie);
         tvLoginLabel.setText(R.string.login);
         tvHasloLabel.setText(R.string.haslo);
         bZaloguj.setText(R.string.zaloguj);
