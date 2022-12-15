@@ -60,6 +60,33 @@ public class SzukajActivity extends CustomAppCompatActivity {
     private CheckBox cbTreenut;
     private CheckBox cbWheat;
 
+    private CheckBox cbAfrican;
+    private CheckBox cbAmerican;
+    private CheckBox cbBritish;
+    private CheckBox cbCajun;
+    private CheckBox cbCaribbean;
+    private CheckBox cbChinese;
+    private CheckBox cbEasterneuropean;
+    private CheckBox cbEuropean;
+    private CheckBox cbFrench;
+    private CheckBox cbGerman;
+    private CheckBox cbGreek;
+    private CheckBox cbIndian;
+    private CheckBox cbIrish;
+    private CheckBox cbItalian;
+    private CheckBox cbJapanese;
+    private CheckBox cbJewish;
+    private CheckBox cbKorean;
+    private CheckBox cbLatinamerican;
+    private CheckBox cbMediterranean;
+    private CheckBox cbMexican;
+    private CheckBox cbMiddleeastern;
+    private CheckBox cbNordic;
+    private CheckBox cbSouthern;
+    private CheckBox cbSpanish;
+    private CheckBox cbThai;
+    private CheckBox cbVietnamese;
+
     private Button bSzukaj;
     PrzepisApi przepisApi;
 
@@ -119,6 +146,33 @@ public class SzukajActivity extends CustomAppCompatActivity {
         cbTreenut = findViewById(R.id.cbTreenut);
         cbWheat = findViewById(R.id.cbWheat);
 
+        cbAfrican = findViewById(R.id.cbAfrican);
+        cbAmerican = findViewById(R.id.cbAmerican);
+        cbBritish = findViewById(R.id.cbBritish);
+        cbCajun = findViewById(R.id.cbCajun);
+        cbCaribbean = findViewById(R.id.cbCaribbean);
+        cbChinese = findViewById(R.id.cbChinese);
+        cbEasterneuropean = findViewById(R.id.cbEasterneuropean);
+        cbEuropean = findViewById(R.id.cbEuropean);
+        cbFrench = findViewById(R.id.cbFrench);
+        cbGerman = findViewById(R.id.cbGerman);
+        cbGreek = findViewById(R.id.cbGreek);
+        cbIndian = findViewById(R.id.cbIndian);
+        cbIrish = findViewById(R.id.cbIrish);
+        cbItalian = findViewById(R.id.cbItalian);
+        cbJapanese = findViewById(R.id.cbJapanese);
+        cbJewish = findViewById(R.id.cbJewish);
+        cbKorean = findViewById(R.id.cbKorean);
+        cbLatinamerican = findViewById(R.id.cbLatinamerican);
+        cbMediterranean = findViewById(R.id.cbMediterranean);
+        cbMexican = findViewById(R.id.cbMexican);
+        cbMiddleeastern = findViewById(R.id.cbMiddleeastern);
+        cbNordic = findViewById(R.id.cbNordic);
+        cbSouthern = findViewById(R.id.cbSouthern);
+        cbSpanish = findViewById(R.id.cbSpanish);
+        cbThai = findViewById(R.id.cbThai);
+        cbVietnamese = findViewById(R.id.cbVietnamese);
+
         RetrofitService retrofitService = RetrofitService.getInstancja(this);
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 
@@ -150,6 +204,7 @@ public class SzukajActivity extends CustomAppCompatActivity {
 
     private String getDiety() {
         List<String> list = new ArrayList<>();
+
         if (cbGlutenfree.isChecked()) list.add("gluten+free");
         if (cbKetogenic.isChecked()) list.add("ketogenic");
         if (cbVegetarian.isChecked()) list.add("vegetarian");
@@ -167,6 +222,7 @@ public class SzukajActivity extends CustomAppCompatActivity {
 
     private String getNietolerancje() {
         List<String> list = new ArrayList<>();
+
         if (cbDairy.isChecked()) list.add("dairy");
         if (cbEgg.isChecked()) list.add("egg");
         if (cbGluten.isChecked()) list.add("gluten");
@@ -184,7 +240,36 @@ public class SzukajActivity extends CustomAppCompatActivity {
     }
 
     private String getKuchnie() {
-        return "";
+        List<String> list = new ArrayList<>();
+
+        if(cbAfrican.isChecked()) list.add("african");
+        if(cbAmerican.isChecked()) list.add("american");
+        if(cbBritish.isChecked()) list.add("british");
+        if(cbCajun.isChecked()) list.add("cajun");
+        if(cbCaribbean.isChecked()) list.add("caribbean");
+        if(cbChinese.isChecked()) list.add("chinese");
+        if(cbEasterneuropean.isChecked()) list.add("eastern+european");
+        if(cbEuropean.isChecked()) list.add("european");
+        if(cbFrench.isChecked()) list.add("french");
+        if(cbGerman.isChecked()) list.add("german");
+        if(cbGreek.isChecked()) list.add("greek");
+        if(cbIndian.isChecked()) list.add("indian");
+        if(cbIrish.isChecked()) list.add("irish");
+        if(cbItalian.isChecked()) list.add("italian");
+        if(cbJapanese.isChecked()) list.add("japanese");
+        if(cbJewish.isChecked()) list.add("jewish");
+        if(cbKorean.isChecked()) list.add("korean");
+        if(cbLatinamerican.isChecked()) list.add("latin+american");
+        if(cbMediterranean.isChecked()) list.add("mediterranean");
+        if(cbMexican.isChecked()) list.add("mexican");
+        if(cbMiddleeastern.isChecked()) list.add("middle+eastern");
+        if(cbNordic.isChecked()) list.add("nordic");
+        if(cbSouthern.isChecked()) list.add("southern");
+        if(cbSpanish.isChecked()) list.add("spanish");
+        if(cbThai.isChecked()) list.add("thai");
+        if(cbVietnamese.isChecked()) list.add("vietnamese");
+
+        return String.join(",", list);
     }
 
     public void updateJezyka() {
@@ -219,6 +304,33 @@ public class SzukajActivity extends CustomAppCompatActivity {
         cbSulfite.setText(R.string.sulfite);
         cbTreenut.setText(R.string.treenut);
         cbWheat.setText(R.string.wheat);
+
+        cbAfrican.setText(R.string.african);
+        cbAmerican.setText(R.string.american);
+        cbBritish.setText(R.string.british);
+        cbCajun.setText(R.string.cajun);
+        cbCaribbean.setText(R.string.caribbean);
+        cbChinese.setText(R.string.chinese);
+        cbEasterneuropean.setText(R.string.easterneuropean);
+        cbEuropean.setText(R.string.european);
+        cbFrench.setText(R.string.french);
+        cbGerman.setText(R.string.german);
+        cbGreek.setText(R.string.greek);
+        cbIndian.setText(R.string.indian);
+        cbIrish.setText(R.string.irish);
+        cbItalian.setText(R.string.italian);
+        cbJapanese.setText(R.string.japanese);
+        cbJewish.setText(R.string.jewish);
+        cbKorean.setText(R.string.korean);
+        cbLatinamerican.setText(R.string.latinamerican);
+        cbMediterranean.setText(R.string.mediterranean);
+        cbMexican.setText(R.string.mexican);
+        cbMiddleeastern.setText(R.string.middleeastern);
+        cbNordic.setText(R.string.nordic);
+        cbSouthern.setText(R.string.southern);
+        cbSpanish.setText(R.string.spanish);
+        cbThai.setText(R.string.thai);
+        cbVietnamese.setText(R.string.vietnamese);
 
         bSzukaj.setText(R.string.szukaj);
 

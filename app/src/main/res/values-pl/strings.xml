@@ -68,4 +68,31 @@
     <string name="treenut">Orzechy drzewne</string>
     <string name="wheat">Pszenica</string>
 
+    <string name="african">Afrykańska</string>
+    <string name="american">Amerykańska</string>
+    <string name="british">Bytyjska</string>
+    <string name="cajun">Cajun</string>
+    <string name="caribbean">Karaibska</string>
+    <string name="chinese">Chiśka</string>
+    <string name="easterneuropean">Wschodno-europejska</string>
+    <string name="european">Europejska</string>
+    <string name="french">Francuska</string>
+    <string name="german">Niemiecka</string>
+    <string name="greek">Grecka</string>
+    <string name="indian">Indyjska</string>
+    <string name="irish">Irlandzka</string>
+    <string name="italian">Włoska</string>
+    <string name="japanese">Japońska</string>
+    <string name="jewish">Żydowska</string>
+    <string name="korean">Koreańska</string>
+    <string name="latinamerican">Latyno-amerykańska</string>
+    <string name="mediterranean">Śródziemnomorska</string>
+    <string name="mexican">Meksykańska</string>
+    <string name="middleeastern">Środkowowschodnia</string>
+    <string name="nordic">Nordycka</string>
+    <string name="southern">Połódniowa</string>
+    <string name="spanish">Hiszpańska</string>
+    <string name="thai">Tajska</string>
+    <string name="vietnamese">Wietnamska</string>
+
 </resources>
