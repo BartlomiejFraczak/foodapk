@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">FOOD APP</string>
+    <string name="title_activity_szukaj">Search</string>
+    <string name="title_activity_przepisy">Recipes</string>
+    <string name="title_activity_przepis">Recipe</string>
+    <string name="title_activity_logowanie">Log in</string>
+    <string name="title_activity_info">Informations</string>
+    <string name="title_activity_rejestracja">Register</string>
+
+    <string name="nazwa">Name</string>
+    <string name="skladniki">Ingredients</string>
+    <string name="kuchnia">Cuisine</string>
+    <string name="dieta">Diet</string>
+    <string name="nietolerancje">Intolerances</string>
+    <string name="szukaj">Search</string>
+    <string name="jezyk">Language</string>
+    <string name="instrukcja">Instructions</string>
+    <string name="login">Login</string>
+    <string name="haslo">Password</string>
+    <string name="zaloguj">Log in</string>
+    <string name="zarejestruj">Register</string>
+    <string name="zalogowano">Logged in</string>
+    <string name="blad">Error</string>
+    <string name="konto">Account</string>
+    <string name="skladnikiDwukropek">Ingredients:</string>
+    <string name="instrukcjaDwukropek">Instructions:</string>
+    <string name="ulubione">Favorites</string>
+    <string name="wyloguj">Log out</string>
+    <string name="wylogowano">Logged out</string>niejesteszalogowany
+    <string name="brakulubionych">No favorites</string>
+    <string name="niejesteszalogowany">You are not logged in</string>
+    <string name="gotowew">Ready in:</string>
+    <string name="porcje">Servings:</string>
+    <string name="kuchnie">Cuisines:</string>
+    <string name="typypotrawy">Dish types:</string>
+    <string name="okazje">Occasions:</string>
+    <string name="winadopary">Paired wines:</string>
+    <string name="diety">Diets:</string>
+    <string name="wynikzdrowotny">Health score:</string>
+    <string name="zarejestrowano">Registered</string>
+    <string name="wymaganylogin">Login required</string>
+    <string name="wymaganehaslo">Password required</string>
+    <string name="haslasieniezgaczaja">Passwords are not matching</string>
+
+    <string name="glutenfree">Gluten free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="lactovegetarian">Lacto-vegetarian</string>
+    <string name="ovovegetarian">Ovo-vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="pescetarian">Pescetarian</string>
+    <string name="paleo">Paleo</string>
+    <string name="primal">Primal</string>
+    <string name="lowfodmap">Low FODMAP</string>
+    <string name="whole30">Whole30</string>
+
+</resources>
