@@ -35,8 +35,10 @@ public class PrzepisSzczegolowy extends Przepis{
     private float pricePerServing;
     private List<Skladnik> extendedIngredients;
     private String spoonacularSourceUrl;
+    private String notatka;
+    private boolean ulubiony;
 
-    public PrzepisSzczegolowy(int id, String title, int readyInMinutes, int servings, String sourceUrl, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<String> pairedWines, String pairingText, String instructions, boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, float healthScore, String creditsText, String license, String sourceName, float pricePerServing, List<Skladnik> extendedIngredients, String spoonacularSourceUrl) {
+    public PrzepisSzczegolowy(int id, String title, int readyInMinutes, int servings, String sourceUrl, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<String> pairedWines, String pairingText, String instructions, boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, float healthScore, String creditsText, String license, String sourceName, float pricePerServing, List<Skladnik> extendedIngredients, String spoonacularSourceUrl, String notatka, boolean ulubiony) {
         this.id = id;
         this.title = title;
         this.readyInMinutes = readyInMinutes;
@@ -73,6 +75,8 @@ public class PrzepisSzczegolowy extends Przepis{
         this.pricePerServing = pricePerServing;
         this.extendedIngredients = extendedIngredients;
         this.spoonacularSourceUrl = spoonacularSourceUrl;
+        this.notatka = notatka;
+        this.ulubiony = ulubiony;
     }
 
     @Override
@@ -114,6 +118,8 @@ public class PrzepisSzczegolowy extends Przepis{
                 ", pricePerServing=" + pricePerServing +
                 ", extendedIngredients=" + extendedIngredients +
                 ", spoonacularSourceUrl='" + spoonacularSourceUrl + '\'' +
+                ", notatka='" + notatka + '\'' +
+                ", ulubiony='" + ulubiony + '\'' +
                 '}';
     }
 
@@ -372,5 +378,21 @@ public class PrzepisSzczegolowy extends Przepis{
 
     public void setSpoonacularSourceUrl(String spoonacularSourceUrl) {
         this.spoonacularSourceUrl = spoonacularSourceUrl;
+    }
+
+    public String getNotatka() {
+        return notatka;
+    }
+
+    public void setNotatka(String notatka) {
+        this.notatka = notatka;
+    }
+
+    public boolean getUlubiony() {
+        return ulubiony;
+    }
+
+    public void setUlubiony(boolean ulubiony) {
+        this.ulubiony = ulubiony;
     }
 }

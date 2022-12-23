@@ -28,6 +28,7 @@ import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
 import bartlomiejfraczak.foodapk.modele.PrzepisModel;
 import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
+import bartlomiejfraczak.foodapk.util.GlobalneInfo;
 import bartlomiejfraczak.foodapk.util.Jezyk;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -101,7 +102,11 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
 
             tr.setClickable(true);
             tr.setOnClickListener(view -> {
-                przepisApi.getPrzepisSzczegolowy(String.valueOf(p.getId()))
+                int uzytkownikId = 0;
+                if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
+                    uzytkownikId = GlobalneInfo.getInstancja().getZalogowanyUzytkownik().getId();
+                }
+                przepisApi.getPrzepisSzczegolowy(p.getId(), uzytkownikId)
                         .enqueue(new Callback<PrzepisSzczegolowy>() {
                             @Override
                             public void onResponse(Call<PrzepisSzczegolowy> call, Response<PrzepisSzczegolowy> response) {
@@ -146,7 +151,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
     }
 
 
-    public void updateJezyka(){
+    public void updateJezyka() {
         this.setTitle(R.string.title_activity_przepisy);
 
         super.updateJezyka();

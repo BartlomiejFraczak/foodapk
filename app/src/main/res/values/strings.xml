@@ -6,6 +6,7 @@
     <string name="title_activity_logowanie">Log in</string>
     <string name="title_activity_info">Informations</string>
     <string name="title_activity_rejestracja">Register</string>
+    <string name="title_activity_notatki">Notes</string>
 
     <string name="nazwa">Name</string>
     <string name="skladniki">Ingredients</string>
@@ -41,6 +42,9 @@
     <string name="wymaganylogin">Login required</string>
     <string name="wymaganehaslo">Password required</string>
     <string name="haslasieniezgaczaja">Passwords are not matching</string>
+    <string name="zapisz">Save</string>
+    <string name="pisztutaj">Type here…</string>
+    <string name="zapisano">Saved</string>
 
     <string name="glutenfree">Gluten free</string>
     <string name="ketogenic">Ketogenic</string>

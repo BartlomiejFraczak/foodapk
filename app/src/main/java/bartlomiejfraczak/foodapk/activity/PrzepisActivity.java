@@ -1,32 +1,21 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Gravity;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import bartlomiejfraczak.foodapk.R;
-import bartlomiejfraczak.foodapk.encje.Przepis;
 import bartlomiejfraczak.foodapk.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapk.encje.Skladnik;
 import bartlomiejfraczak.foodapk.encje.Uzytkownik;
 import bartlomiejfraczak.foodapk.komunikacja.PobierzObraz;
 import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
-import bartlomiejfraczak.foodapk.modele.PrzepisModel;
 import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
 import bartlomiejfraczak.foodapk.util.GlobalneInfo;
-import bartlomiejfraczak.foodapk.util.Jezyk;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,11 +23,12 @@ import retrofit2.Response;
 
 public class PrzepisActivity extends CustomAppCompatActivity {
     private PrzepisSzczegolowy przepisSzczegolowy;
-    private boolean lubi;
+    //    private boolean lubi;
     private TextView tvTitle;
     private ImageView iv;
     private ImageView ivUlubiony;
     private ImageView ivInfo;
+    private ImageView ivNotatki;
     private TextView tvSkladnikiLabel;
     private TextView tvExtendedIngredients;
     private TextView tvInstrukcjaLabel;
@@ -62,17 +52,18 @@ public class PrzepisActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
-        lubi = false;
         RetrofitService retrofitService = RetrofitService.getInstancja(this);
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 
         setTitle(R.string.title_activity_przepis);
 
         przepisSzczegolowy = PrzepisSzczegolowyModel.getInstancja().getPrzepisSzczegolowy();
+        System.out.println("ulubiony: " + przepisSzczegolowy.getUlubiony());
         tvTitle = findViewById(R.id.tvTitle);
         iv = findViewById(R.id.iv);
         ivUlubiony = findViewById(R.id.ivUlubiony);
         ivInfo = findViewById(R.id.ivInfo);
+        ivNotatki = findViewById(R.id.ivNotatki);
         tvSkladnikiLabel = findViewById(R.id.tvSkladnikiLabel);
         tvExtendedIngredients = findViewById(R.id.tvExtendedIngredients);
         tvInstrukcjaLabel = findViewById(R.id.tvInstrukcjaLabel);
@@ -81,27 +72,12 @@ public class PrzepisActivity extends CustomAppCompatActivity {
         tvTitle.setText(przepisSzczegolowy.getTitle());
 
         new PobierzObraz(iv).execute(przepisSzczegolowy.getImage());
+        System.out.println("przepis szczegolowy: " + przepisSzczegolowy.toString());
 
         if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
-            Uzytkownik zalogowanyUzytkownik = GlobalneInfo.getInstancja().getZalogowanyUzytkownik();
-            przepisApi.czyUzytkownikLubi(
-                    String.valueOf(zalogowanyUzytkownik.getId()),
-                    String.valueOf(przepisSzczegolowy.getId())
-            ).enqueue(new Callback<Boolean>() {
-                @Override
-                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    lubi = Boolean.TRUE.equals(response.body());
-                    if (lubi) {
-                        ivUlubiony.setImageResource(R.mipmap.serce_pelne_foreground);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<Boolean> call, Throwable t) {
-                    Toast.makeText(PrzepisActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
-                }
-            });
-
+            if (przepisSzczegolowy.getUlubiony()) {
+                ivUlubiony.setImageResource(R.mipmap.serce_pelne_foreground);
+            }
         }
 
         ivUlubiony.setClickable(true);
@@ -110,43 +86,27 @@ public class PrzepisActivity extends CustomAppCompatActivity {
             if (!GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
                 Toast.makeText(PrzepisActivity.this, R.string.niejesteszalogowany, Toast.LENGTH_SHORT).show();
             } else {
-                if (lubi) {
-                    przepisApi.usunZUlubionych(
-                            String.valueOf(zalogowanyUzytkownik.getId()),
-                            String.valueOf(przepisSzczegolowy.getId())
-                    ).enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                            ivUlubiony.setImageResource(R.mipmap.serce_puste_foreground);
-                            lubi = false;
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(PrzepisActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                } else {
-                    przepisApi.dodajDoUlubionych(
-                            String.valueOf(zalogowanyUzytkownik.getId()),
-                            String.valueOf(przepisSzczegolowy.getId())
-                    ).enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                przepisApi.edytujPrzepisInfo(
+                        zalogowanyUzytkownik.getId(),
+                        przepisSzczegolowy.getId(),
+                        !przepisSzczegolowy.getUlubiony(),
+                        przepisSzczegolowy.getNotatka()
+                ).enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        przepisSzczegolowy.setUlubiony(!przepisSzczegolowy.getUlubiony());
+                        if (przepisSzczegolowy.getUlubiony()) {
                             ivUlubiony.setImageResource(R.mipmap.serce_pelne_foreground);
-                            lubi = true;
+                        } else {
+                            ivUlubiony.setImageResource(R.mipmap.serce_puste_foreground);
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(PrzepisActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-                }
-
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(PrzepisActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -154,6 +114,15 @@ public class PrzepisActivity extends CustomAppCompatActivity {
         ivInfo.setOnClickListener(view -> {
             Intent myIntent = new Intent(this, InfoActivity.class);
             startActivity(myIntent);
+        });
+
+        ivNotatki.setOnClickListener(view -> {
+            if (!GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
+                Toast.makeText(PrzepisActivity.this, R.string.niejesteszalogowany, Toast.LENGTH_SHORT).show();
+            } else {
+                Intent myIntent = new Intent(this, NotatkiActivity.class);
+                startActivity(myIntent);
+            }
         });
 
         tvSkladnikiLabel.setText(R.string.skladnikiDwukropek);

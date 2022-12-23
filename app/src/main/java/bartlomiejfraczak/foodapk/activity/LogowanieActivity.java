@@ -94,6 +94,7 @@ public class LogowanieActivity extends CustomAppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
+                        System.out.println(t.getMessage());
                         Toast.makeText(LogowanieActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
                     }
                 });

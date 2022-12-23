@@ -10,6 +10,7 @@ import bartlomiejfraczak.foodapk.activity.InfoActivity;
 import bartlomiejfraczak.foodapk.activity.KontoActivity;
 import bartlomiejfraczak.foodapk.activity.LogowanieActivity;
 import bartlomiejfraczak.foodapk.activity.MainActivity;
+import bartlomiejfraczak.foodapk.activity.NotatkiActivity;
 import bartlomiejfraczak.foodapk.activity.PrzepisActivity;
 import bartlomiejfraczak.foodapk.activity.PrzepisyActivity;
 import bartlomiejfraczak.foodapk.activity.RejestracjaActivity;
@@ -47,5 +48,16 @@ public class Jezyk {
             InfoActivity.getInstancja().updateJezyka();
         if (RejestracjaActivity.getInstancja() != null)
             RejestracjaActivity.getInstancja().updateJezyka();
+        if (NotatkiActivity.getInstancja() != null)
+            NotatkiActivity.getInstancja().updateJezyka();
     }
+
+    public String przetlumaczPolAng(String ang) {
+        //todo
+        return "";
+    }
+
+//    public String przetlumaczAngPol() {
+//        return "";
+//    }
 }
