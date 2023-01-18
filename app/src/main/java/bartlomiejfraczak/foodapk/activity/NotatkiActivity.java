@@ -41,6 +41,7 @@ public class NotatkiActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
         setTitle(R.string.title_activity_notatki);
 
         bZapisz = findViewById(R.id.bZapiszNotatki);

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import bartlomiejfraczak.foodapk.R;
 import bartlomiejfraczak.foodapk.encje.Przepis;
@@ -30,6 +33,7 @@ import bartlomiejfraczak.foodapk.modele.PrzepisModel;
 import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
 import bartlomiejfraczak.foodapk.util.GlobalneInfo;
 import bartlomiejfraczak.foodapk.util.Jezyk;
+import bartlomiejfraczak.foodapk.util.Tlumacz;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +41,7 @@ import retrofit2.Response;
 public class PrzepisyActivity extends CustomAppCompatActivity {
 
     private List<Przepis> przepisy;
+    private List<TextView> tvPrzepisy;
     private TableLayout tPrzepisy;
     PrzepisApi przepisApi;
 
@@ -57,6 +62,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
         tPrzepisy = findViewById(R.id.tPrzepisy);
         setTitle(R.string.title_activity_przepisy);
         przepisy = PrzepisModel.getInstancja().getPrzepisy();
@@ -65,6 +71,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 
         dodajPrzepisyDoTabeli();
+        updateJezyka();
 
 //        StringBuilder sb = new StringBuilder();
 //
@@ -92,7 +99,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
             System.out.println("przepisy jest puste");
             return;
         }
-
+        tvPrzepisy = new ArrayList<>();
         for (Przepis p : przepisy) {
             ViewGroup.LayoutParams layoutParams;
             TableRow tr = new TableRow(this);
@@ -132,6 +139,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
 //            layoutParams.weight = 1;
 //            tv.setLayoutParams(layoutParams);
             tv.setText(p.getTitle());
+            tvPrzepisy.add(tv);
 
 
 //            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -150,11 +158,26 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
 
     }
 
-
+    @Override
     public void updateJezyka() {
         this.setTitle(R.string.title_activity_przepisy);
 
-        super.updateJezyka();
+        switch (GlobalneInfo.getInstancja().getRegion()) {
+            case "pl":
+                List<String> przepisyTytuly = przepisy.stream().map(Przepis::getTitle).collect(Collectors.toList());
+                Jezyk.przetlumacz(tvPrzepisy, "en", "pl", przepisyTytuly);
+                break;
+            case "en":
+                for (int i = 0; i < tvPrzepisy.size(); i++) {
+                    tvPrzepisy.get(i).setText(przepisy.get(i).getTitle());
+                }
+                break;
+            default:
+                System.out.println("błąd w PrzepisActivity.updateJezyka() switch");
+                break;
 
+        }
+        super.updateJezyka();
     }
+
 }

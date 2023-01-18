@@ -69,38 +69,53 @@ public class MainActivity extends CustomAppCompatActivity {
             startActivity(myIntent);
         });
         zmianaUzytkownika();
+    }
+
+    public void updateJezyka() {
+        bSzukajMenu.setText(R.string.szukaj);
+        bZalogujMenu.setText(R.string.zaloguj);
+        bKontoMenu.setText(R.string.konto);
+        super.updateJezyka();
 
     }
 
-
-    private void initStary() {
-        bSzukajMenu = findViewById(R.id.bSzukajMenu);
-
-        RetrofitService retrofitService = RetrofitService.getInstancja(this);
-        TekstApi tekstApi = retrofitService.getRetrofit().create(TekstApi.class);
-        przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
-        loginApi = retrofitService.getRetrofit().create(LoginApi.class);
-//        System.out.println("przepis api: " + przepisApi);
-
-
-        bSzukajMenu.setOnClickListener(view -> {
-            przepisApi.getUlubioneUzytkownika(2)
-                    .enqueue(new Callback<List<PrzepisSzczegolowy>>() {
-                        @Override
-                        public void onResponse(Call<List<PrzepisSzczegolowy>> call, Response<List<PrzepisSzczegolowy>> response) {
-                            List<PrzepisSzczegolowy> przepisy = response.body();
-                            System.out.println("ilosc przepisów: " + przepisy.size());
-                            System.out.println("pierwszy przepis: " + przepisy.get(0).toString());
-                            System.out.println("drugi przepis: " + przepisy.get(1).toString());
-                            Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<PrzepisSzczegolowy>> call, Throwable t) {
-                            Toast.makeText(MainActivity.this, "nie ok", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        });
+    public void zmianaUzytkownika() {
+        if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
+            bZalogujMenu.setVisibility(View.GONE);
+            bKontoMenu.setVisibility(View.VISIBLE);
+        } else {
+            bZalogujMenu.setVisibility(View.VISIBLE);
+            bKontoMenu.setVisibility(View.GONE);
+        }
+    }
+//    private void initStary() {
+//        bSzukajMenu = findViewById(R.id.bSzukajMenu);
+//
+//        RetrofitService retrofitService = RetrofitService.getInstancja(this);
+//        TekstApi tekstApi = retrofitService.getRetrofit().create(TekstApi.class);
+//        przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
+//        loginApi = retrofitService.getRetrofit().create(LoginApi.class);
+////        System.out.println("przepis api: " + przepisApi);
+//
+//
+//        bSzukajMenu.setOnClickListener(view -> {
+//            przepisApi.getUlubioneUzytkownika(2)
+//                    .enqueue(new Callback<List<PrzepisSzczegolowy>>() {
+//                        @Override
+//                        public void onResponse(Call<List<PrzepisSzczegolowy>> call, Response<List<PrzepisSzczegolowy>> response) {
+//                            List<PrzepisSzczegolowy> przepisy = response.body();
+//                            System.out.println("ilosc przepisów: " + przepisy.size());
+//                            System.out.println("pierwszy przepis: " + przepisy.get(0).toString());
+//                            System.out.println("drugi przepis: " + przepisy.get(1).toString());
+//                            Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<List<PrzepisSzczegolowy>> call, Throwable t) {
+//                            Toast.makeText(MainActivity.this, "nie ok", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//        });
 //        bSzukajMenu.setOnClickListener(view -> {
 //            przepisApi.getPrzepisy("pancake", null, null, null, null)
 //                    .enqueue(new Callback<List<Przepis>>() {
@@ -184,49 +199,32 @@ public class MainActivity extends CustomAppCompatActivity {
 //                        }
 //                    });
 //        });
-    }
+//    }
 
-    private void wypelnijPrzepisami(List<Przepis> przepisy) {
-        StringBuilder sb = new StringBuilder();
-        for (Przepis p : przepisy) {
-            sb.append(p.getId());
-            sb.append("\n");
-            sb.append(p.getTitle());
-            sb.append("\n");
-            sb.append(p.getImage());
-            sb.append("\n");
-            sb.append(p.getImageType());
-            sb.append("\n\n");
-        }
-        textView.setText(sb);
-    }
+//    private void wypelnijPrzepisami(List<Przepis> przepisy) {
+//        StringBuilder sb = new StringBuilder();
+//        for (Przepis p : przepisy) {
+//            sb.append(p.getId());
+//            sb.append("\n");
+//            sb.append(p.getTitle());
+//            sb.append("\n");
+//            sb.append(p.getImage());
+//            sb.append("\n");
+//            sb.append(p.getImageType());
+//            sb.append("\n\n");
+//        }
+//        textView.setText(sb);
+//    }
+//
+//    private void wypelnijTekstem(List<Tekst> lista) {
+//        StringBuilder sb = new StringBuilder();
+//        for (Tekst t : lista) {
+//            sb.append(t.getNazwa());
+//            sb.append("\n");
+//        }
+//        sb.deleteCharAt(sb.length() - 1);
+//        textView.setText(sb);
+//
+//    }
 
-    private void wypelnijTekstem(List<Tekst> lista) {
-        StringBuilder sb = new StringBuilder();
-        for (Tekst t : lista) {
-            sb.append(t.getNazwa());
-            sb.append("\n");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        textView.setText(sb);
-
-    }
-
-    public void updateJezyka() {
-        bSzukajMenu.setText(R.string.szukaj);
-        bZalogujMenu.setText(R.string.zaloguj);
-        bKontoMenu.setText(R.string.konto);
-        super.updateJezyka();
-
-    }
-
-    public void zmianaUzytkownika() {
-        if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
-            bZalogujMenu.setVisibility(View.GONE);
-            bKontoMenu.setVisibility(View.VISIBLE);
-        } else {
-            bZalogujMenu.setVisibility(View.VISIBLE);
-            bKontoMenu.setVisibility(View.GONE);
-        }
-    }
 }

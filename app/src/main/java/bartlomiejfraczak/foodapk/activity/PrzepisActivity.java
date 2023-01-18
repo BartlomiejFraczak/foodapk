@@ -52,6 +52,7 @@ public class PrzepisActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
         RetrofitService retrofitService = RetrofitService.getInstancja(this);
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 

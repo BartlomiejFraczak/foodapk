@@ -54,6 +54,8 @@ public class InfoActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
+
         tvReadyInMinutesLabel = findViewById(R.id.tvReadyInMinutesLabel);
         tvReadyInMinutes = findViewById(R.id.tvReadyInMinutes);
         sepReadyInMinutes = findViewById(R.id.sepReadyInMinutes);

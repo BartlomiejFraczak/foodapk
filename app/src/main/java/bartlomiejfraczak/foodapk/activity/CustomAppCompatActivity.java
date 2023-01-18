@@ -1,5 +1,6 @@
 package bartlomiejfraczak.foodapk.activity;
 
+import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -31,9 +32,9 @@ public class CustomAppCompatActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                // User chose the "Settings" item, show the app settings UI...
-                return true;
+//            case R.id.action_settings:
+//                // User chose the "Settings" item, show the app settings UI...
+//                return true;
 
             case R.id.action_jezyk:
                 zmienJezyk();
@@ -51,10 +52,12 @@ public class CustomAppCompatActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         zmienIkone();
         return super.onPrepareOptionsMenu(menu);
-
     }
 
     public void zmienIkone() {
+        if (menu == null) {
+            return;
+        }
         MenuItem item = menu.findItem(R.id.action_jezyk);
         String region = GlobalneInfo.getInstancja().getRegion();
         switch (region) {
@@ -95,7 +98,16 @@ public class CustomAppCompatActivity extends AppCompatActivity {
 
     public void updateJezyka() {
         zmienIkone();
+    }
 
+    public void dodajBackButton() {
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

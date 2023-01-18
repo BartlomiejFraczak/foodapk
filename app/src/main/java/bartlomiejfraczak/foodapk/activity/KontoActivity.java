@@ -44,6 +44,7 @@ public class KontoActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
         bUlubioneKonto = findViewById(R.id.bUlubioneKonto);
         bWylogujKonto = findViewById(R.id.bWylogujKonto);
 

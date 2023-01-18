@@ -50,6 +50,7 @@ public class LogowanieActivity extends CustomAppCompatActivity {
     }
 
     private void init() {
+        dodajBackButton();
         setTitle(R.string.title_activity_logowanie);
         tvLoginLabel = findViewById(R.id.tvLoginLabel);
         tvHasloLabel = findViewById(R.id.tvHasloLabel);
@@ -68,7 +69,6 @@ public class LogowanieActivity extends CustomAppCompatActivity {
             Intent myIntent = new Intent(this, RejestracjaActivity.class);
             startActivity(myIntent);
         });
-
     }
 
     private void zaloguj() {

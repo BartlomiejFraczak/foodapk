@@ -2,6 +2,7 @@ package bartlomiejfraczak.foodapk.activity;
 
 import androidx.annotation.NonNull;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -108,7 +109,7 @@ public class SzukajActivity extends CustomAppCompatActivity {
 
 
     private void init() {
-//        ukryjZmianeJezyka();
+        dodajBackButton();
 
         etNazwa = findViewById(R.id.etNazwa);
         etSkladniki = findViewById(R.id.etSkladniki);
