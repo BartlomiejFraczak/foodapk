@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import bartlomiejfraczak.foodapk.R;
 import bartlomiejfraczak.foodapk.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapk.encje.Skladnik;
@@ -14,6 +17,7 @@ import bartlomiejfraczak.foodapk.encje.Uzytkownik;
 import bartlomiejfraczak.foodapk.komunikacja.PobierzObraz;
 import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
+import bartlomiejfraczak.foodapk.komunikacja.Tlumacz;
 import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
 import bartlomiejfraczak.foodapk.util.GlobalneInfo;
 import okhttp3.ResponseBody;
@@ -23,7 +27,7 @@ import retrofit2.Response;
 
 public class PrzepisActivity extends CustomAppCompatActivity {
     private PrzepisSzczegolowy przepisSzczegolowy;
-    //    private boolean lubi;
+    private String listaSkladnikowHtml;
     private TextView tvTitle;
     private ImageView iv;
     private ImageView ivUlubiony;
@@ -59,7 +63,6 @@ public class PrzepisActivity extends CustomAppCompatActivity {
         setTitle(R.string.title_activity_przepis);
 
         przepisSzczegolowy = PrzepisSzczegolowyModel.getInstancja().getPrzepisSzczegolowy();
-        System.out.println("ulubiony: " + przepisSzczegolowy.getUlubiony());
         tvTitle = findViewById(R.id.tvTitle);
         iv = findViewById(R.id.iv);
         ivUlubiony = findViewById(R.id.ivUlubiony);
@@ -73,7 +76,6 @@ public class PrzepisActivity extends CustomAppCompatActivity {
         tvTitle.setText(przepisSzczegolowy.getTitle());
 
         new PobierzObraz(iv).execute(przepisSzczegolowy.getImage());
-        System.out.println("przepis szczegolowy: " + przepisSzczegolowy.toString());
 
         if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
             if (przepisSzczegolowy.getUlubiony()) {
@@ -129,25 +131,52 @@ public class PrzepisActivity extends CustomAppCompatActivity {
         tvSkladnikiLabel.setText(R.string.skladnikiDwukropek);
         StringBuilder sb = new StringBuilder();
         sb.append("<ol>");
-        for (
-                Skladnik s : przepisSzczegolowy.getExtendedIngredients()) {
+        for (Skladnik s : przepisSzczegolowy.getExtendedIngredients()) {
             sb.append("<li>");
             sb.append(s.getOriginal());
             sb.append("</li>");
         }
         sb.append("</ol>");
-        tvExtendedIngredients.setText(Html.fromHtml(sb.toString(), Html.FROM_HTML_MODE_COMPACT));
+        listaSkladnikowHtml = sb.toString();
+        tvExtendedIngredients.setText(Html.fromHtml(listaSkladnikowHtml, Html.FROM_HTML_MODE_COMPACT));
 
         tvInstrukcjaLabel.setText(R.string.instrukcjaDwukropek);
         tvInstrukcja.setText(Html.fromHtml(przepisSzczegolowy.getInstructions(), Html.FROM_HTML_MODE_COMPACT));
-    }
 
+        updateJezyka();
+    }
 
     public void updateJezyka() {
         setTitle(R.string.title_activity_przepis);
         tvSkladnikiLabel.setText(R.string.skladnikiDwukropek);
         tvInstrukcjaLabel.setText(R.string.instrukcjaDwukropek);
 
+
+        switch (GlobalneInfo.getInstancja().getRegion()) {
+            case "pl":
+                System.out.println("elo");
+                List<TextView> tvs = new ArrayList<>();
+                List<String> teksty = new ArrayList<>();
+
+                tvs.add(tvExtendedIngredients);
+                tvs.add(tvInstrukcja);
+                tvs.add(tvTitle);
+
+                teksty.add(listaSkladnikowHtml);
+                teksty.add(przepisSzczegolowy.getInstructions());
+                teksty.add(przepisSzczegolowy.getTitle());
+
+                new Tlumacz(tvs, "en", "pl", teksty);
+                break;
+            case "en":
+                tvExtendedIngredients.setText(Html.fromHtml(listaSkladnikowHtml, Html.FROM_HTML_MODE_COMPACT));
+                tvInstrukcja.setText(Html.fromHtml(przepisSzczegolowy.getInstructions(), Html.FROM_HTML_MODE_COMPACT));
+                tvTitle.setText(Html.fromHtml(przepisSzczegolowy.getTitle(), Html.FROM_HTML_MODE_COMPACT));
+                break;
+            default:
+                System.out.println("błąd w PrzepisyActivity.updateJezyka() switch");
+                break;
+        }
         super.updateJezyka();
     }
 }

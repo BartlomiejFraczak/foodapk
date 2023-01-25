@@ -1,23 +1,14 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +20,10 @@ import bartlomiejfraczak.foodapk.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapk.komunikacja.PobierzObraz;
 import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
+import bartlomiejfraczak.foodapk.komunikacja.Tlumacz;
 import bartlomiejfraczak.foodapk.modele.PrzepisModel;
 import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
 import bartlomiejfraczak.foodapk.util.GlobalneInfo;
-import bartlomiejfraczak.foodapk.util.Jezyk;
-import bartlomiejfraczak.foodapk.util.Tlumacz;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,11 +37,9 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
 
     private static PrzepisyActivity instancja;
 
-
     public static PrzepisyActivity getInstancja() {
         return instancja;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,48 +60,29 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
 
         dodajPrzepisyDoTabeli();
         updateJezyka();
-
-//        StringBuilder sb = new StringBuilder();
-//
-//        for (Przepis p : przepisy) {
-//            sb.append(p.getId());
-//            sb.append("\n");
-//            sb.append(p.getTitle());
-//            sb.append("\n");
-//            sb.append(p.getImage());
-//            sb.append("\n");
-//            sb.append(p.getImageType());
-//            sb.append("\n\n");
-//        }
-//        if (sb.length() == 0) {
-//            sb.append("*nic*");
-//        }
-//
-//        tvPrzepisy.setText(sb.toString());
-
     }
 
     private void dodajPrzepisyDoTabeli() {
         if (przepisy.isEmpty()) {
-            //todo
+            //todo wyświetl napis "brak przepisów"
             System.out.println("przepisy jest puste");
             return;
         }
         tvPrzepisy = new ArrayList<>();
-        for (Przepis p : przepisy) {
-            ViewGroup.LayoutParams layoutParams;
-            TableRow tr = new TableRow(this);
-            ImageView iv = new ImageView(this);
-            TextView tv = new TextView(this);
+        for (Przepis przepis : przepisy) {
+//            ViewGroup.LayoutParams layoutParams;
+            TableRow tableRow = new TableRow(this);
+            ImageView imageView = new ImageView(this);
+            TextView textView = new TextView(this);
 
 
-            tr.setClickable(true);
-            tr.setOnClickListener(view -> {
+            tableRow.setClickable(true);
+            tableRow.setOnClickListener(view -> {
                 int uzytkownikId = 0;
                 if (GlobalneInfo.getInstancja().getCzyUzytkownikZalogowany()) {
                     uzytkownikId = GlobalneInfo.getInstancja().getZalogowanyUzytkownik().getId();
                 }
-                przepisApi.getPrzepisSzczegolowy(p.getId(), uzytkownikId)
+                przepisApi.getPrzepisSzczegolowy(przepis.getId(), uzytkownikId)
                         .enqueue(new Callback<PrzepisSzczegolowy>() {
                             @Override
                             public void onResponse(Call<PrzepisSzczegolowy> call, Response<PrzepisSzczegolowy> response) {
@@ -130,32 +99,19 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
                         });
             });
 
-
-            new PobierzObraz(iv).execute(p.getImage());
             //todo zawijanie tekstu w tabeli
 
-            layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//            layoutParams.setMargins(10, 10, 10, 10);
-//            layoutParams.weight = 1;
-//            tv.setLayoutParams(layoutParams);
-            tv.setText(p.getTitle());
-            tvPrzepisy.add(tv);
+            // layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tvPrzepisy.add(textView);
 
+            new PobierzObraz(imageView).execute(przepis.getImage());
+            textView.setText(przepis.getTitle());
+            tableRow.setGravity(Gravity.CENTER_VERTICAL);
 
-//            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            layoutParams.setMargins(10, 10, 10, 10);
-//            layoutParams.weight = 0;
-//            iv.setLayoutParams(layoutParams);
-
-            tr.setGravity(Gravity.CENTER_VERTICAL);
-
-            tr.addView(iv);
-            tr.addView(tv);
-            tPrzepisy.addView(tr);
+            tableRow.addView(imageView);
+            tableRow.addView(textView);
+            tPrzepisy.addView(tableRow);
         }
-
-//        tPrzepisy.addView();
-
     }
 
     @Override
@@ -165,7 +121,7 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
         switch (GlobalneInfo.getInstancja().getRegion()) {
             case "pl":
                 List<String> przepisyTytuly = przepisy.stream().map(Przepis::getTitle).collect(Collectors.toList());
-                Jezyk.przetlumacz(tvPrzepisy, "en", "pl", przepisyTytuly);
+                new Tlumacz(tvPrzepisy, "en", "pl", przepisyTytuly);
                 break;
             case "en":
                 for (int i = 0; i < tvPrzepisy.size(); i++) {
@@ -175,7 +131,6 @@ public class PrzepisyActivity extends CustomAppCompatActivity {
             default:
                 System.out.println("błąd w PrzepisActivity.updateJezyka() switch");
                 break;
-
         }
         super.updateJezyka();
     }

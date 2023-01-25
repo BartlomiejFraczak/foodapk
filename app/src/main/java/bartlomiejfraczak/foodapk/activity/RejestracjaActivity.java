@@ -1,7 +1,5 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +10,6 @@ import bartlomiejfraczak.foodapk.R;
 import bartlomiejfraczak.foodapk.encje.Uzytkownik;
 import bartlomiejfraczak.foodapk.komunikacja.LoginApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
-import bartlomiejfraczak.foodapk.util.GlobalneInfo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,7 +26,6 @@ public class RejestracjaActivity extends CustomAppCompatActivity {
     LoginApi loginApi;
 
     private static RejestracjaActivity instancja;
-
 
     public static RejestracjaActivity getInstancja() {
         return instancja;

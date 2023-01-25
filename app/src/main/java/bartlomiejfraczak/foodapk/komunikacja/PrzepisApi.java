@@ -38,23 +38,4 @@ public interface PrzepisApi {
             @Query("ulubiony") boolean ulubiony,
             @Query("notatka") String notatka
     );
-
-
-//    @POST("/przepis/ulubione/dodaj")
-//    Call<ResponseBody> dodajDoUlubionych(
-//            @Query("uzytkownikId") String uzytkownikId,
-//            @Query("przepisId") String przepisId
-//    );
-
-//    @POST("/przepis/ulubione/czy")
-//    Call<Boolean> czyUzytkownikLubi(
-//            @Query("uzytkownikId") String uzytkownikId,
-//            @Query("przepisId") String przepisId
-//    );
-
-//    @POST("/przepis/ulubione/usun")
-//    Call<ResponseBody> usunZUlubionych(
-//            @Query("uzytkownikId") String uzytkownikId,
-//            @Query("przepisId") String przepisId
-//    );
 }

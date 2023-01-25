@@ -1,7 +1,5 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,8 +76,6 @@ public class NotatkiActivity extends CustomAppCompatActivity {
 
         etNotatka.setText(przepisSzczegolowy.getNotatka());
         etNotatka.setHint(R.string.pisztutaj);
-
-
     }
 
 
@@ -89,6 +85,5 @@ public class NotatkiActivity extends CustomAppCompatActivity {
         etNotatka.setHint(R.string.pisztutaj);
 
         super.updateJezyka();
-
     }
 }

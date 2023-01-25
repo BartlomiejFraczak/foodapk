@@ -37,7 +37,6 @@ public class GlobalneInfo {
 
     public void setZalogowanyUzytkownik(Uzytkownik zalogowanyUzytkownik) {
         this.zalogowanyUzytkownik = zalogowanyUzytkownik;
-//        System.out.println("setZalogowanyUzytkownik: " + zalogowanyUzytkownik.toString());
     }
 
     public boolean getCzyUzytkownikZalogowany() {
@@ -49,7 +48,6 @@ public class GlobalneInfo {
         if (!czyUzytkownikZalogowany) {
             zalogowanyUzytkownik = null;
         }
-//        System.out.println("setCzyUzytkownikZalogowany: " + czyUzytkownikZalogowany);
     }
 
     public void setCzyUzytkownikZalogowany(boolean czyUzytkownikZalogowany, int id) {

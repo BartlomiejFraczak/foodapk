@@ -31,20 +31,11 @@ public class CustomAppCompatActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-//            case R.id.action_settings:
-//                // User chose the "Settings" item, show the app settings UI...
-//                return true;
-
-            case R.id.action_jezyk:
-                zmienJezyk();
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
+        if (item.getItemId() == R.id.action_jezyk) {
+            zmienJezyk();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -92,7 +83,6 @@ public class CustomAppCompatActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Jezyk.getInstancja().updateJezyka();
-//        setTitle(R.string.title_activity_szukaj);
         invalidateOptionsMenu();
     }
 

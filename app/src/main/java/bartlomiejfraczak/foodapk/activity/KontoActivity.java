@@ -1,18 +1,13 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import bartlomiejfraczak.foodapk.R;
-import bartlomiejfraczak.foodapk.encje.Przepis;
 import bartlomiejfraczak.foodapk.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapk.encje.Uzytkownik;
 import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
@@ -48,29 +43,6 @@ public class KontoActivity extends CustomAppCompatActivity {
         bUlubioneKonto = findViewById(R.id.bUlubioneKonto);
         bWylogujKonto = findViewById(R.id.bWylogujKonto);
 
-//        bSzukaj.setOnClickListener(view -> {
-//            przepisApi.getPrzepisy(etNazwa.getText().toString(),
-//                            etKuchnia.getText().toString(),
-//                            etDieta.getText().toString(),
-//                            etNietolerancje.getText().toString(),
-//                            etSkladniki.getText().toString()
-//                    )
-//                    .enqueue(new Callback<List<Przepis>>() {
-//                        @Override
-//                        public void onResponse(Call<List<Przepis>> call, Response<List<Przepis>> response) {
-//                            List<Przepis> przepisy = response.body();
-//                            Intent intent = new Intent(SzukajActivity.this, PrzepisyActivity.class);
-//                            PrzepisModel.getInstancja().setPrzepisy(przepisy);
-//                            startActivity(intent);
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<List<Przepis>> call, Throwable t) {
-//                            Toast.makeText(SzukajActivity.this, "błąd", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//
-//        });
         RetrofitService retrofitService = RetrofitService.getInstancja(this);
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 

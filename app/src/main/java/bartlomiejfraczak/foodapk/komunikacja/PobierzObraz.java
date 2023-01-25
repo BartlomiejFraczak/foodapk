@@ -9,27 +9,27 @@ import android.widget.ImageView;
 import java.io.InputStream;
 
 public class PobierzObraz extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
+    ImageView imageView;
 
-    public PobierzObraz(ImageView bmImage) {
-        this.bmImage = bmImage;
+    public PobierzObraz(ImageView imageView) {
+        this.imageView = imageView;
     }
 
     protected Bitmap doInBackground(String... urls) {
         String urldisplay = urls[0];
-        Bitmap mIcon11 = null;
+        Bitmap bitmap = null;
         try {
             InputStream in = new java.net.URL(urldisplay).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
+            bitmap = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
-            Log.e("Error", e.getMessage());
+            Log.e("Error PobierzObraz", e.getMessage());
             e.printStackTrace();
         }
-        return mIcon11;
+        return bitmap;
     }
 
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        imageView.setImageBitmap(result);
     }
 }
 

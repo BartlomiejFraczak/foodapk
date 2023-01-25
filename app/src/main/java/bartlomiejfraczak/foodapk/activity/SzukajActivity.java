@@ -1,10 +1,6 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.annotation.NonNull;
-
-import android.app.ActionBar;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,7 +16,6 @@ import bartlomiejfraczak.foodapk.encje.Przepis;
 import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
 import bartlomiejfraczak.foodapk.modele.PrzepisModel;
-import bartlomiejfraczak.foodapk.util.Jezyk;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,7 +88,6 @@ public class SzukajActivity extends CustomAppCompatActivity {
 
     private static SzukajActivity instancja;
 
-
     public static SzukajActivity getInstancja() {
         return instancja;
     }
@@ -106,7 +100,6 @@ public class SzukajActivity extends CustomAppCompatActivity {
         instancja = this;
         init();
     }
-
 
     private void init() {
         dodajBackButton();
@@ -178,8 +171,8 @@ public class SzukajActivity extends CustomAppCompatActivity {
         przepisApi = retrofitService.getRetrofit().create(PrzepisApi.class);
 
         bSzukaj.setOnClickListener(view -> {
-            String diety = getDiety();
-            przepisApi.getPrzepisy(etNazwa.getText().toString(),
+            przepisApi.getPrzepisy(
+                            etNazwa.getText().toString(),
                             getKuchnie(),
                             getDiety(),
                             getNietolerancje(),
@@ -189,8 +182,8 @@ public class SzukajActivity extends CustomAppCompatActivity {
                         @Override
                         public void onResponse(Call<List<Przepis>> call, Response<List<Przepis>> response) {
                             List<Przepis> przepisy = response.body();
-                            Intent intent = new Intent(SzukajActivity.this, PrzepisyActivity.class);
                             PrzepisModel.getInstancja().setPrzepisy(przepisy);
+                            Intent intent = new Intent(SzukajActivity.this, PrzepisyActivity.class);
                             startActivity(intent);
                         }
 
@@ -243,32 +236,32 @@ public class SzukajActivity extends CustomAppCompatActivity {
     private String getKuchnie() {
         List<String> list = new ArrayList<>();
 
-        if(cbAfrican.isChecked()) list.add("african");
-        if(cbAmerican.isChecked()) list.add("american");
-        if(cbBritish.isChecked()) list.add("british");
-        if(cbCajun.isChecked()) list.add("cajun");
-        if(cbCaribbean.isChecked()) list.add("caribbean");
-        if(cbChinese.isChecked()) list.add("chinese");
-        if(cbEasterneuropean.isChecked()) list.add("eastern+european");
-        if(cbEuropean.isChecked()) list.add("european");
-        if(cbFrench.isChecked()) list.add("french");
-        if(cbGerman.isChecked()) list.add("german");
-        if(cbGreek.isChecked()) list.add("greek");
-        if(cbIndian.isChecked()) list.add("indian");
-        if(cbIrish.isChecked()) list.add("irish");
-        if(cbItalian.isChecked()) list.add("italian");
-        if(cbJapanese.isChecked()) list.add("japanese");
-        if(cbJewish.isChecked()) list.add("jewish");
-        if(cbKorean.isChecked()) list.add("korean");
-        if(cbLatinamerican.isChecked()) list.add("latin+american");
-        if(cbMediterranean.isChecked()) list.add("mediterranean");
-        if(cbMexican.isChecked()) list.add("mexican");
-        if(cbMiddleeastern.isChecked()) list.add("middle+eastern");
-        if(cbNordic.isChecked()) list.add("nordic");
-        if(cbSouthern.isChecked()) list.add("southern");
-        if(cbSpanish.isChecked()) list.add("spanish");
-        if(cbThai.isChecked()) list.add("thai");
-        if(cbVietnamese.isChecked()) list.add("vietnamese");
+        if (cbAfrican.isChecked()) list.add("african");
+        if (cbAmerican.isChecked()) list.add("american");
+        if (cbBritish.isChecked()) list.add("british");
+        if (cbCajun.isChecked()) list.add("cajun");
+        if (cbCaribbean.isChecked()) list.add("caribbean");
+        if (cbChinese.isChecked()) list.add("chinese");
+        if (cbEasterneuropean.isChecked()) list.add("eastern+european");
+        if (cbEuropean.isChecked()) list.add("european");
+        if (cbFrench.isChecked()) list.add("french");
+        if (cbGerman.isChecked()) list.add("german");
+        if (cbGreek.isChecked()) list.add("greek");
+        if (cbIndian.isChecked()) list.add("indian");
+        if (cbIrish.isChecked()) list.add("irish");
+        if (cbItalian.isChecked()) list.add("italian");
+        if (cbJapanese.isChecked()) list.add("japanese");
+        if (cbJewish.isChecked()) list.add("jewish");
+        if (cbKorean.isChecked()) list.add("korean");
+        if (cbLatinamerican.isChecked()) list.add("latin+american");
+        if (cbMediterranean.isChecked()) list.add("mediterranean");
+        if (cbMexican.isChecked()) list.add("mexican");
+        if (cbMiddleeastern.isChecked()) list.add("middle+eastern");
+        if (cbNordic.isChecked()) list.add("nordic");
+        if (cbSouthern.isChecked()) list.add("southern");
+        if (cbSpanish.isChecked()) list.add("spanish");
+        if (cbThai.isChecked()) list.add("thai");
+        if (cbVietnamese.isChecked()) list.add("vietnamese");
 
         return String.join(",", list);
     }
@@ -334,7 +327,6 @@ public class SzukajActivity extends CustomAppCompatActivity {
         cbVietnamese.setText(R.string.vietnamese);
 
         bSzukaj.setText(R.string.szukaj);
-
 
         super.updateJezyka();
     }

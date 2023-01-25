@@ -1,10 +1,6 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,14 +8,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import bartlomiejfraczak.foodapk.R;
-import bartlomiejfraczak.foodapk.encje.PrzepisSzczegolowy;
 import bartlomiejfraczak.foodapk.encje.Uzytkownik;
 import bartlomiejfraczak.foodapk.komunikacja.LoginApi;
-import bartlomiejfraczak.foodapk.komunikacja.PrzepisApi;
 import bartlomiejfraczak.foodapk.komunikacja.RetrofitService;
-import bartlomiejfraczak.foodapk.modele.PrzepisSzczegolowyModel;
 import bartlomiejfraczak.foodapk.util.GlobalneInfo;
-import bartlomiejfraczak.foodapk.util.Jezyk;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -94,7 +86,6 @@ public class LogowanieActivity extends CustomAppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Integer> call, Throwable t) {
-                        System.out.println(t.getMessage());
                         Toast.makeText(LogowanieActivity.this, R.string.blad, Toast.LENGTH_SHORT).show();
                     }
                 });

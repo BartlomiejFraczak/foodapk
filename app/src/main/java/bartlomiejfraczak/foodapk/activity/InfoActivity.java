@@ -1,7 +1,5 @@
 package bartlomiejfraczak.foodapk.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -138,9 +136,7 @@ public class InfoActivity extends CustomAppCompatActivity {
             sepPairedWines.setVisibility(View.GONE);
         }
         if (przepisSzczegolowy.getDiets() != null && przepisSzczegolowy.getDiets().size() > 0) {
-            System.out.println("ilosc diet: " + przepisSzczegolowy.getDiets().size());
             tvDiets.setText(String.join("\n", przepisSzczegolowy.getDiets()));
-            System.out.println(String.join("\n", przepisSzczegolowy.getDiets()));
         } else {
             tvDietsLabel.setVisibility(View.GONE);
             tvDiets.setVisibility(View.GONE);
